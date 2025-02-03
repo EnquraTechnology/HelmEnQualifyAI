@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai_model_server
+  namespace: {{ .Values.namespace }}
+  labels:
+    ai.service: ai_model_server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      ai.service: ai_model_server
+  template:
+    metadata:
+      labels:
+        ai.service: ai_model_server
+    spec:
+      containers:
+        - name: ai_model_server
+          image: "{{ .Values.ai_model_server.repository.image }}:{{ .Values.ai_model_server.repository.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: ai_model_server
+              containerPort: 8500
+            - name: ai_model_server-8501
+              containerPort: 8501
+

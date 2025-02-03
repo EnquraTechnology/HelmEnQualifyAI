@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartid
+  namespace: {{ .Values.namespace }}
+  labels:
+    ai.service: smartid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      ai.service: smartid
+  template:
+    metadata:
+      labels:
+      ai.service: smartid
+    spec:
+      containers:
+        - name: smartid
+          image: "{{ .Values.smartid.repository.image }}:{{ .Values.smartid.repository.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: smartid
+              containerPort: 7444
+          volumeMounts:
+            - name: log-folder
+              mountPath: /home/smartuser/smartid/log
+          env:
+            - name: HASH_CHECK
+              value: '{{ .Values.smartid.environment.HASH_CHECK }}'
+            - name: AI_DEBUG
+              value: '{{ .Values.smartid.environment.AI_DEBUG }}'
+            - name: AI_DEV
+              value: '{{ .Values.smartid.environment.AI_DEV }}'
+            - name: MODEL_IPC_TYPE
+              value: '{{ .Values.smartid.environment.MODEL_IPC_TYPE }}'
+            - name: MODEL_SERVER_ADDR
+              value: '{{ .Values.smartid.environment.MODEL_SERVER_ADDR }}'
+      volumes:
+        - name: log-folder
+          persistentVolumeClaim:
+            claimName: {{ .Values.volumes.smartid-log.persistentVolumeClaim.claimName }}

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+   name: enqualifyapp-ai-log-pvc
+   namespaces: {{ .Values.namespace }}
+spec:
+  storageClassName: {{ .Values.pvc.storageClassName }}
+  #volumeName: {{ .Values.pvc.volumeName }}
+  volumeMode: {{ .Values.pvc.volumeMode }}
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+       storage: {{ .Values.pvc.resources.requests.storage }}

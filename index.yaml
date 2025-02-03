@@ -3,7 +3,17 @@ entries:
   EnQualifyAI:
   - apiVersion: v2
     appVersion: 1.4.1
-    created: "2024-10-17T02:59:09.735656996Z"
+    created: "2025-02-03T14:37:28.004088882+03:00"
+    description: A Helm chart for Kubernetes
+    digest: 206bfa4c4f09c870dab930e5341e54f93a25551bb74864c82dad091ab75dc145
+    name: EnQualifyAI
+    type: application
+    urls:
+    - EnQualifyAI-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.4.1
+    created: "2025-02-03T14:37:28.003727077+03:00"
     description: A Helm chart for Kubernetes
     digest: d54d358e0af270a40ca1c222c9255957d97c09dadc20905730024c5d6a2e3993
     name: EnQualifyAI
@@ -11,4 +21,4 @@ entries:
     urls:
     - EnQualifyAI-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-17T02:59:09.735111299Z"
+generated: "2025-02-03T14:37:27.999398316+03:00"

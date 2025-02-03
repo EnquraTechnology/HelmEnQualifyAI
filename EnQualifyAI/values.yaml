@@ -1,0 +1,30 @@
+namespace: enqualifyapp-ai
+ai_model_server:
+  repository:
+    image: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+smartid:
+  environment:
+    AI_DEBUG: "False"
+    AI_DEV: "False"
+    HASH_CHECK: "False"
+    MODEL_IPC_TYPE: "GRPC"
+    MODEL_SERVER_ADDR: "ai_model_server" #ai_model_server servisinin (ai_model_server.enqualifyapp.svc.cluster.local:8500)içerdeki adresi girilecek.
+  repository:
+    image: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+volumes:
+    persistentVolumeClaim:
+      claimName: enqualifyapp-ai-log-pvc
+pvc:
+  storageClassName: nfs-sc
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 100Gi
+ingressClassName: nginx
+rules:
+  host: enqualifyai.example.com
+
